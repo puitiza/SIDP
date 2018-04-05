@@ -1,5 +1,6 @@
 package pe.anthony.sidp.models;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
@@ -23,11 +24,14 @@ public class User extends RealmObject{
     @Required
     private String email;
 
+    private RealmList<Market> markets;
+
     public User() {
     }
 
     public User(String username, String password, String email){
         this.id= MyApplication.UserId.incrementAndGet();
+        this.markets = new RealmList<Market>();
         this.username = username;
         this.password = password;
         this.email = email;
@@ -59,5 +63,13 @@ public class User extends RealmObject{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public RealmList<Market> getMarkets() {
+        return markets;
+    }
+
+    public void setMarkets(RealmList<Market> markets) {
+        this.markets = markets;
     }
 }

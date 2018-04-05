@@ -8,6 +8,7 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
+import pe.anthony.sidp.models.Market;
 import pe.anthony.sidp.models.User;
 
 /**
@@ -16,6 +17,7 @@ import pe.anthony.sidp.models.User;
 public class MyApplication extends Application{
 
     public  static AtomicInteger UserId = new AtomicInteger();
+    public  static AtomicInteger MarketId = new AtomicInteger();
 
     //Voy a configurar cosas global de la app y esto se va configurar cuando se inice la app
     @Override
@@ -24,6 +26,7 @@ public class MyApplication extends Application{
         setUpRealmConfig();
         Realm realm = Realm.getDefaultInstance();
         UserId = getIdByTable(realm, User.class);
+        MarketId = getIdByTable(realm, Market.class);
         realm.close();
     }
 
