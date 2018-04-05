@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context="pe.anthony.sidp.MainActivity">
+    android:id="@+id/rootLayout"
+    tools:context="pe.anthony.sidp.activities.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -23,24 +24,25 @@
         android:background="#11000000"
         android:drawableLeft="@drawable/ic_action_user"
         android:ems="10"
-        android:hint="Username"
+        android:hint="Nombre de Usuario"
         android:inputType="textPersonName"
         android:textColorHint="#c7c7c7"
         android:textColor="#fafafa"
         android:textSize="16dp"
         android:layout_marginBottom="35dp"
-        android:layout_above="@+id/editText2"
+        android:layout_above="@+id/editTextPassword"
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editTextPassword"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:background="#11000000"
         android:drawableLeft="@drawable/ic_action_pass"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Contraseña"
         android:textColorHint="#c7c7c7"
+        android:textColor="#fafafa"
         android:inputType="textPassword"
         android:layout_marginBottom="130dp"
         android:layout_alignBottom="@+id/btnSignIn"
