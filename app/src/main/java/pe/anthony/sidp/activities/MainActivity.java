@@ -42,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
         editText = findViewById(R.id.editText);
         editTextPassword =findViewById(R.id.editTextPassword);
-
+/*        realm.beginTransaction();
+        realm.deleteAll();
+        realm.commitTransaction();*/
 
         rootLayout = findViewById(R.id.rootLayout);
 
@@ -94,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         RealmResults<User> listaUsuarios = realm.where(User.class).findAll();
         if(listUsername.size()>0){
             //check password
-            RealmResults listPass = realm
+            RealmResults<User> listPass = realm
                     .where(User.class)
                     .equalTo("username",user)
                     .equalTo("password",pass)
@@ -102,9 +104,10 @@ public class MainActivity extends AppCompatActivity {
             if(listPass.size()>0){
                 SessionManager sessionManager = new SessionManager(MainActivity.this);
                 sessionManager.saveLoginCredenetials(user);
-                Intent supermarket_activity = new Intent(this, supermarket.class);
-                supermarket_activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(supermarket_activity);
+                Intent intentSuperMarket = new Intent(this, supermarket.class);
+                intentSuperMarket.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intentSuperMarket.putExtra("id",listPass.get(0).getId());
+                startActivity(intentSuperMarket);
                 MainActivity.this.finish();
             }else{
                 Snackbar.make(rootLayout,"Nombre de usuario y contraseña no son iguales, porfavor coloque el usuario y contraseña correcto",Snackbar.LENGTH_SHORT).show();
