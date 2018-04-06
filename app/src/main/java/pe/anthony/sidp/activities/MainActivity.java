@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     .findAll();
             if(listPass.size()>0){
                 SessionManager sessionManager = new SessionManager(MainActivity.this);
-                sessionManager.saveLoginCredenetials(user);
+                sessionManager.saveLoginCredenetials(user,listPass.get(0).getId());
                 Intent intentSuperMarket = new Intent(this, supermarket.class);
                 intentSuperMarket.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intentSuperMarket.putExtra("id",listPass.get(0).getId());

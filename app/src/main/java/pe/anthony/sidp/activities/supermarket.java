@@ -22,6 +22,7 @@ import pe.anthony.sidp.R;
 import pe.anthony.sidp.adapters.MakerAdapter;
 import pe.anthony.sidp.models.Market;
 import pe.anthony.sidp.models.User;
+import pe.anthony.sidp.util.SessionManager;
 
 public class supermarket extends AppCompatActivity implements RealmChangeListener<RealmList<Market>>,AdapterView.OnItemClickListener {
 
@@ -37,15 +38,20 @@ public class supermarket extends AppCompatActivity implements RealmChangeListene
     private int userId;
     private User user;
 
+    private SessionManager sessionManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supermarket);
-
+        sessionManager = new SessionManager(supermarket.this);
         realm= Realm.getDefaultInstance();
 
         if(getIntent().getExtras()!= null){
-            userId = getIntent().getExtras().getInt("id");}
+            userId = getIntent().getExtras().getInt("id");
+        }else{
+            userId = sessionManager.getIdUser();
+        }
         user = realm.where(User.class).equalTo("id",userId).findFirst();
 
         shops = user.getMarkets();
@@ -107,6 +113,5 @@ public class supermarket extends AppCompatActivity implements RealmChangeListene
         Intent intent = new Intent(this,MapsActivity.class);
 //        intent.putExtra("id",tiendas.get(position).getIdMarket());
         startActivity(intent);
-        supermarket.this.finish();
     }
 }

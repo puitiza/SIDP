@@ -48,6 +48,7 @@
 
         <activity
             android:name=".activities.MapsActivity"
+            android:parentActivityName=".activities.supermarket"
             android:label="@string/title_activity_maps"></activity>
     </application>
 
