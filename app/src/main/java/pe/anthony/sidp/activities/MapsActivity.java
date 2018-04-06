@@ -227,6 +227,11 @@ public class MapsActivity extends AppCompatActivity
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         buildGoogleApiClient();
+        LatLng megaplaza = new LatLng(-11.9942198, -77.06109200000003);
+        mMap.addMarker(new MarkerOptions()
+                .title("tiendita").position(megaplaza)
+                .snippet("Cupos:" )
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.carrito)));
     }
 
     private boolean isNetworkAvailable() {
