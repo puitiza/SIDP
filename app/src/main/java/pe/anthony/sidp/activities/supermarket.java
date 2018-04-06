@@ -2,12 +2,14 @@ package pe.anthony.sidp.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
@@ -21,7 +23,7 @@ import pe.anthony.sidp.adapters.MakerAdapter;
 import pe.anthony.sidp.models.Market;
 import pe.anthony.sidp.models.User;
 
-public class supermarket extends AppCompatActivity implements RealmChangeListener<RealmList<Market>> {
+public class supermarket extends AppCompatActivity implements RealmChangeListener<RealmList<Market>>,AdapterView.OnItemClickListener {
 
     private ListView listView;
     private FloatingActionButton fab;
@@ -53,7 +55,7 @@ public class supermarket extends AppCompatActivity implements RealmChangeListene
         listView = findViewById(R.id.listViewSupermarket);
         adapter = new MakerAdapter(this,shops,R.layout.list_view_market_item);
         listView.setAdapter(adapter);
-
+        listView.setOnItemClickListener(this);
         rootLayout = findViewById(R.id.superMarterLayout);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,5 +100,13 @@ public class supermarket extends AppCompatActivity implements RealmChangeListene
     @Override
     public void onChange(RealmList<Market> markets) {
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        Intent intent = new Intent(this,MapsActivity.class);
+//        intent.putExtra("id",tiendas.get(position).getIdMarket());
+        startActivity(intent);
+        supermarket.this.finish();
     }
 }
