@@ -110,8 +110,9 @@ public class supermarket extends AppCompatActivity implements RealmChangeListene
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        sessionManager.saveShop(shops.get(position).getName(),shops.get(position).getId());
         Intent intent = new Intent(this,MapsActivity.class);
-//        intent.putExtra("id",tiendas.get(position).getIdMarket());
+        intent.putExtra("id",shops.get(position).getId());
         startActivity(intent);
     }
 }

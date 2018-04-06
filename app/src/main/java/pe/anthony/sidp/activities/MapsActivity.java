@@ -3,6 +3,7 @@ package pe.anthony.sidp.activities;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.ConnectivityManager;
@@ -39,6 +40,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 
 import pe.anthony.sidp.R;
+import pe.anthony.sidp.util.SessionManager;
 
 public class MapsActivity extends AppCompatActivity
         implements OnMapReadyCallback,
@@ -63,11 +65,16 @@ public class MapsActivity extends AppCompatActivity
     Marker mCurrent;
     FusedLocationProviderClient mFusedLocationClient;
 
+    private SessionManager sessionManager;
+    private String nameShop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        sessionManager = new SessionManager(this);
+
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -228,10 +235,27 @@ public class MapsActivity extends AppCompatActivity
         mMap = googleMap;
         buildGoogleApiClient();
         LatLng megaplaza = new LatLng(-11.9942198, -77.06109200000003);
+
+        nameShop = sessionManager.getNameShop();
+
         mMap.addMarker(new MarkerOptions()
-                .title("tiendita").position(megaplaza)
-                .snippet("Cupos:" )
+                .title(nameShop).position(megaplaza)
+                .snippet("Productos Disponibles:" )
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.carrito)));
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            public void onInfoWindowClick(Marker marker) {
+                if(!marker.getTitle().equals("Localizacion Actual")) {
+
+                    /*Intent intent = new Intent(MapsActivity.this, DetalleServicio.class);
+                    intent.putExtra("Cochera", info);*/
+                    Intent intent = new Intent(MapsActivity.this, Productos.class);
+
+                    startActivity(intent);
+
+                }
+
+            }
+        });
     }
 
     private boolean isNetworkAvailable() {
