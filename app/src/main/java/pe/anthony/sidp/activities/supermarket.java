@@ -13,13 +13,15 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import io.realm.Realm;
+import io.realm.RealmChangeListener;
 import io.realm.RealmList;
+import io.realm.RealmResults;
 import pe.anthony.sidp.R;
 import pe.anthony.sidp.adapters.MakerAdapter;
 import pe.anthony.sidp.models.Market;
 import pe.anthony.sidp.models.User;
 
-public class supermarket extends AppCompatActivity {
+public class supermarket extends AppCompatActivity implements RealmChangeListener<RealmList<Market>> {
 
     private ListView listView;
     private FloatingActionButton fab;
@@ -43,12 +45,13 @@ public class supermarket extends AppCompatActivity {
         if(getIntent().getExtras()!= null){
             userId = getIntent().getExtras().getInt("id");}
         user = realm.where(User.class).equalTo("id",userId).findFirst();
+
         shops = user.getMarkets();
+        shops.addChangeListener(this);
 
         fab = findViewById(R.id.fabAddSuperM);
         listView = findViewById(R.id.listViewSupermarket);
         adapter = new MakerAdapter(this,shops,R.layout.list_view_market_item);
-
         listView.setAdapter(adapter);
 
         rootLayout = findViewById(R.id.superMarterLayout);
@@ -85,10 +88,15 @@ public class supermarket extends AppCompatActivity {
     }
 
     private void createNewShop(String tiendaName) {
-    /*    realm.beginTransaction();
+        realm.beginTransaction();
         Market _market = new Market(tiendaName);
         realm.copyToRealm(_market);
         user.getMarkets().add(_market);
-        realm.commitTransaction();*/
+        realm.commitTransaction();
+    }
+
+    @Override
+    public void onChange(RealmList<Market> markets) {
+        adapter.notifyDataSetChanged();
     }
 }

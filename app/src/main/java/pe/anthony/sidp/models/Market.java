@@ -12,19 +12,19 @@ import pe.anthony.sidp.app.MyApplication;
 public class Market extends RealmObject {
 
     @PrimaryKey
-    private int idMarket;
+    private int id;
 
     @Required
     private String name;
 
     public Market(String name) {
-        this.idMarket = MyApplication.MarketId.incrementAndGet();
+        this.id = MyApplication.MarketId.incrementAndGet();
         this.name = name;
     }
     public Market() {}
 
-    public int getIdMarket() {
-        return idMarket;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
