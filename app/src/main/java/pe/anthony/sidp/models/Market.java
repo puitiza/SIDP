@@ -1,5 +1,6 @@
 package pe.anthony.sidp.models;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
@@ -17,8 +18,11 @@ public class Market extends RealmObject {
     @Required
     private String name;
 
+    private RealmList<Product> products;
+
     public Market(String name) {
         this.id = MyApplication.MarketId.incrementAndGet();
+        this.products = new RealmList<Product>();
         this.name = name;
     }
     public Market() {}
@@ -33,5 +37,13 @@ public class Market extends RealmObject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public RealmList<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(RealmList<Product> products) {
+        this.products = products;
     }
 }
