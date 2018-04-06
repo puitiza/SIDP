@@ -7,7 +7,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -69,7 +71,7 @@ public class supermarket extends AppCompatActivity implements RealmChangeListene
                 showAlertForCreateSuperMarket();
             }
         });
-
+        registerForContextMenu(listView);
     }
 
     private void showAlertForCreateSuperMarket() {
@@ -95,12 +97,65 @@ public class supermarket extends AppCompatActivity implements RealmChangeListene
         dialog.show();
     }
 
+    private void showAlertForEditSuperMarket(final Market shop) {
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+
+        dialog.setTitle("Editar Tienda");
+        View viewInflated = LayoutInflater.from(this).inflate(R.layout.layout_dialog_create_supermarket, null);
+        dialog.setView(viewInflated);
+
+        final EditText tienda = viewInflated.findViewById(R.id.editNameTienda);
+        tienda.setText(shop.getName());
+        dialog.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String tiendaName = tienda.getText().toString().trim();
+                if(tiendaName.isEmpty()){
+                    Snackbar.make(rootLayout,"Ingrese un nombre de Tienda para editar",Snackbar.LENGTH_SHORT).show();
+                }else if(tiendaName.equals(shop.getName())){
+                    Snackbar.make(rootLayout,"El nombre ingresado es el mismo",Snackbar.LENGTH_SHORT).show();
+                }
+                else{
+                    editShop(tiendaName,shop);
+                }
+            }
+        });
+        dialog.show();
+    }
+
+    private void editShop(String tiendaName, Market shop) {
+        realm.beginTransaction();
+        shop.setName(tiendaName);
+        realm.copyToRealmOrUpdate(shop);
+        realm.commitTransaction();
+    }
+
     private void createNewShop(String tiendaName) {
         realm.beginTransaction();
         Market _market = new Market(tiendaName);
         realm.copyToRealm(_market);
         user.getMarkets().add(_market);
         realm.commitTransaction();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+        menu.setHeaderTitle(shops.get(info.position).getName());
+        getMenuInflater().inflate(R.menu.context_menu_supermarket_activity,menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()){
+            case R.id.edit_superMarket :
+                showAlertForEditSuperMarket(shops.get(info.position));
+                return true;
+
+            default:
+               return  super.onContextItemSelected(item);
+        }
     }
 
     @Override
