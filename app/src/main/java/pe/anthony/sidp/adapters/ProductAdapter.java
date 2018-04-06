@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import pe.anthony.sidp.R;
-import pe.anthony.sidp.models.Market;
 import pe.anthony.sidp.models.Product;
 
 /**
@@ -50,7 +49,7 @@ public class ProductAdapter extends BaseAdapter {
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(layout,null);
             vh = new ViewHolder();
-//            vh.nro = convertView.findViewById(R.id.textViewNumero);
+            vh.nro = convertView.findViewById(R.id.textViewNumero);
             vh.precio = convertView.findViewById(R.id.textViewPrecio);
             vh.stock = convertView.findViewById(R.id.textViewStock);
             convertView.setTag(vh);
@@ -58,7 +57,7 @@ public class ProductAdapter extends BaseAdapter {
             vh = (ViewHolder) convertView.getTag();
         }
         Product product = list.get(position);
-//        vh.nro.setText(product.getNro());
+        vh.nro.setText(Integer.toString(product.getNro()));
         vh.precio.setText(Float.toString(product.getPrecio()));
         vh.stock.setText(Integer.toString(product.getStock()));
         return convertView;

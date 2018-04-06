@@ -74,19 +74,28 @@ public class Productos extends AppCompatActivity implements RealmChangeListener<
         View viewInflated = LayoutInflater.from(this).inflate(R.layout.layout_dialog_create_productos, null);
         dialog.setView(viewInflated);
 
+        final EditText cantidad = viewInflated.findViewById(R.id.editNameCantidad);
         final EditText precio = viewInflated.findViewById(R.id.editNamePrecio);
         final EditText stock = viewInflated.findViewById(R.id.editNameStock);
 
         dialog.setPositiveButton("Agregar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
+                String cantidadProduct = cantidad.getText().toString().trim();
                 String precioProduct = precio.getText().toString().trim();
-                float precio = Float.valueOf(precioProduct);
                 String stockProduct = stock.getText().toString().trim();
-                int stock = Integer.parseInt(stockProduct);
-                if(precioProduct.length()>0){
-                    if(stockProduct.length()>0){
-                        createNewProducts(precio, stock);
+
+                if(!precioProduct.isEmpty()){
+                    float precio = Float.valueOf(precioProduct);
+                    if(!stockProduct.isEmpty()){
+                        int stock = Integer.parseInt(stockProduct);
+                        if(!cantidadProduct.isEmpty()){
+                            int cantidad = Integer.parseInt(cantidadProduct);
+                            createNewProducts(cantidad,precio, stock);
+                        }else{
+                            Snackbar.make(rootLayout,"Ingrese la cantidad del producto",Snackbar.LENGTH_LONG).show();
+                        }
                     }else{
                         Snackbar.make(rootLayout,"Ingrese un numero de stock de product",Snackbar.LENGTH_LONG).show();
                     }
@@ -98,9 +107,9 @@ public class Productos extends AppCompatActivity implements RealmChangeListener<
         dialog.show();
     }
 
-    private void createNewProducts(float precio, int stock) {
+    private void createNewProducts(int cantidad, float precio, int stock) {
         realm.beginTransaction();
-        Product _producto = new Product(products.size()+1,precio,stock);
+        Product _producto = new Product(cantidad,precio,stock);
         realm.copyToRealm(_producto);
         market.getProducts().add(_producto);
         realm.commitTransaction();
