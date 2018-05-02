@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/SIDP.iml" filepath="$PROJECT_DIR$/.idea/SIDP.iml" />
-      <module fileurl="file://D:\workSpace_Android\ProyectosSimilaresParking\SIDP\SIDP.iml" filepath="D:\workSpace_Android\ProyectosSimilaresParking\SIDP\SIDP.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

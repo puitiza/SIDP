@@ -20,7 +20,7 @@ tools:context="pe.anthony.sidp.activities.supermarket">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nro"
+            android:text="Cantidad"
             android:textSize="20sp"
             android:layout_margin="5dp"
             android:layout_weight="0.4"
