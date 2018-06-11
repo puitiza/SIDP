@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             realm.close();
             e.printStackTrace();
-
         }
     }
 
