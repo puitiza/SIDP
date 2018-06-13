@@ -38,5 +38,5 @@ Preview 1             	 |  Preview 2	        				|
 [logo11]: https://github.com/puitiza/SIDP/blob/master/preview/images/11png.png?raw=true
 [logo12]: https://github.com/puitiza/SIDP/blob/master/preview/images/12png.png?raw=true
 
-[gif1]: https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_1.gif=20x20
-[gif2]: https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_2.gif=20x20
+[gif1]: https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_1.gif?raw=true
+[gif2]: https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_2.gif?raw=true
