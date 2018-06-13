@@ -2,6 +2,13 @@
 Este es una aplicativo que se pidió para la postulación como practicante en android en Grupo Lucky.  
 SIDP->Sistema de Productos  
 
+
+Preview  
+
+Preview 1             	 |  Preview 2	        				|
+:-----------------------:|:-------------------------: |
+<img src="https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_1.gif?raw=true" width="350" height="500" />   |              <img src="https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_2.gif?raw=true" width="350" height="500" />    |  
+
 Images  
 
 Imagen 1             	   |  Imagen 2	        				| Imagen 3		 		           | Imagen 4		        			 |
@@ -15,15 +22,6 @@ Imagen 5             	   |  Imagen 6					| Imagen 7		 		     | Imagen 8					 |
 Imagen 9             	   |  Imagen 10					| Imagen 11		 		     | Imagen 12				 |
 :-------------------------:|:-------------------------: | :-------------------------:|:-------------------------:|
 ![alt text][logo9] 		   |![alt text][logo10] 	 	|![alt text][logo11]		 |![alt text][logo12]		 |	
-
-
-Preview  
-
-Preview 1             	 |  Preview 2	        				|
-:-----------------------:|:-------------------------: |
-<img src="https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_1.gif?raw=true" width="350" height="500" />   |              <img src="https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_2.gif?raw=true" width="350" height="500" />    |
-
-
 
 [logo1]: https://github.com/puitiza/SIDP/blob/master/preview/images/1png.png?raw=true
 [logo2]: https://github.com/puitiza/SIDP/blob/master/preview/images/2png.png?raw=true
