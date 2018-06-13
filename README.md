@@ -18,9 +18,10 @@ Imagen 9             	   |  Imagen 10					| Imagen 11		 		     | Imagen 12				 |
 
 
 Preview  
+
 Preview 1             	 |  Preview 2	        				|
 :-----------------------:|:-------------------------: |
-![carga fallida][https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_1.gif?raw=true] 	 |![carga fallida][https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_2.gif?raw=true] 	    |
+![carga fallida][gif1] 	 |![carga fallida][gif2] 	    |
 
 
 
