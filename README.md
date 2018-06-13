@@ -21,7 +21,7 @@ Preview
 
 Preview 1             	 |  Preview 2	        				|
 :-----------------------:|:-------------------------: |
-![test image size](https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_1.gif?raw=true){:class="img-responsive"}	 |![carga fallida](https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_2.gif?raw=true){:height="50%" width="50%"} 	    |
+![alt text][gif1]       |![alt text][gif2] 	    |
 
 
 
@@ -38,5 +38,5 @@ Preview 1             	 |  Preview 2	        				|
 [logo11]: https://github.com/puitiza/SIDP/blob/master/preview/images/11png.png?raw=true
 [logo12]: https://github.com/puitiza/SIDP/blob/master/preview/images/12png.png?raw=true
 
-[gif1]: https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_1.gif?raw=true
-[gif2]: https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_2.gif?raw=true
+[gif1]: https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_1.gif?raw=true width=100
+[gif2]: https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_2.gif?raw=true width=100
