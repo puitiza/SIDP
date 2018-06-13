@@ -21,7 +21,7 @@ Preview
 
 Preview 1             	 |  Preview 2	        				|
 :-----------------------:|:-------------------------: |
-![carga fallida][gif1]{:height="50%" width="50%"} 	 |![carga fallida][gif2]{:height="50%" width="50%"} 	    |
+![test image size](https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_1.gif?raw=true){:class="img-responsive"}	 |![carga fallida](https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_2.gif?raw=true){:height="50%" width="50%"} 	    |
 
 
 
