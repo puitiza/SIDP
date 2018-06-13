@@ -16,6 +16,14 @@ Imagen 9             	   |  Imagen 10					| Imagen 11		 		     | Imagen 12				 |
 :-------------------------:|:-------------------------: | :-------------------------:|:-------------------------:|
 ![alt text][logo9] 		   |![alt text][logo10] 	 	|![alt text][logo11]		 |![alt text][logo12]		 |	
 
+
+Preview  
+Preview 1             	 |  Preview 2	        				|
+:-----------------------:|:-------------------------: |
+![carga fallida][gif1] 	 |![carga fallida][gif2] 	    |
+
+
+
 [logo1]: https://github.com/puitiza/SIDP/blob/master/preview/images/1png.png?raw=true
 [logo2]: https://github.com/puitiza/SIDP/blob/master/preview/images/2png.png?raw=true
 [logo3]: https://github.com/puitiza/SIDP/blob/master/preview/images/3png.png?raw=true
@@ -29,5 +37,5 @@ Imagen 9             	   |  Imagen 10					| Imagen 11		 		     | Imagen 12				 |
 [logo11]: https://github.com/puitiza/SIDP/blob/master/preview/images/11png.png?raw=true
 [logo12]: https://github.com/puitiza/SIDP/blob/master/preview/images/12png.png?raw=true
 
-
-![carga fallida](https://github.com/puitiza/SIDP/blob/master/preview/gifs/1.gif?raw=true)
+[gif1]: https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_1.gif?raw=true
+[gif2]: https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_2.gif?raw=true
