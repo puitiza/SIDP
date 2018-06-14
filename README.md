@@ -23,7 +23,7 @@ Preview
 
 Preview 1             	 |  Preview 2	        				|
 :-----------------------:|:-------------------------: |
-<img src="https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_1.gif?raw=true" width="50%" height="50%" />   |              <img src="https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_2.gif?raw=true" width="50%" height="50%" />    |  
+<img src="https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_1.gif?raw=true" width="50%"  />   |              <img src="https://github.com/puitiza/SIDP/blob/master/preview/gifs/parte_2.gif?raw=true" width="50%"  />    |  
 
 Images  
 
