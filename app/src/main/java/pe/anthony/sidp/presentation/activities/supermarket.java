@@ -1,12 +1,12 @@
-package pe.anthony.sidp.activities;
+package pe.anthony.sidp.presentation.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -19,12 +19,11 @@ import android.widget.ListView;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmList;
-import io.realm.RealmResults;
 import pe.anthony.sidp.R;
-import pe.anthony.sidp.adapters.MakerAdapter;
-import pe.anthony.sidp.models.Market;
-import pe.anthony.sidp.models.User;
-import pe.anthony.sidp.util.SessionManager;
+import pe.anthony.sidp.data.entities.Market;
+import pe.anthony.sidp.data.entities.User;
+import pe.anthony.sidp.utils.SessionManager;
+import pe.anthony.sidp.presentation.adapters.MakerAdapter;
 
 public class supermarket extends AppCompatActivity implements RealmChangeListener<RealmList<Market>>,AdapterView.OnItemClickListener {
 

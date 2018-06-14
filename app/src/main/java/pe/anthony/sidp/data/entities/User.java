@@ -1,10 +1,11 @@
-package pe.anthony.sidp.models;
+package pe.anthony.sidp.data.entities;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
 import pe.anthony.sidp.app.MyApplication;
+import pe.anthony.sidp.data.entities.Market;
 
 /**
  * Created by ANTHONY on 4/04/2018.

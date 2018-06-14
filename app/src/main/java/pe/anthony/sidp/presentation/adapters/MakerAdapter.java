@@ -1,4 +1,4 @@
-package pe.anthony.sidp.adapters;
+package pe.anthony.sidp.presentation.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,19 +10,19 @@ import android.widget.TextView;
 import java.util.List;
 
 import pe.anthony.sidp.R;
-import pe.anthony.sidp.models.Product;
+import pe.anthony.sidp.data.entities.Market;
 
 /**
- * Created by ANTHONY on 6/04/2018.
+ * Created by ANTHONY on 5/04/2018.
  */
 
-public class ProductAdapter extends BaseAdapter {
+public class MakerAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Product> list;
+    private List<Market> list;
     private int layout;
 
-    public ProductAdapter(Context context, List<Product> list, int layout) {
+    public MakerAdapter(Context context, List<Market> list, int layout) {
         this.context = context;
         this.list = list;
         this.layout = layout;
@@ -34,8 +34,8 @@ public class ProductAdapter extends BaseAdapter {
     }
 
     @Override
-    public Product getItem(int position) {
-        return  list.get(position);
+    public Object getItem(int position) {
+        return list.get(position);
     }
 
     @Override
@@ -49,23 +49,17 @@ public class ProductAdapter extends BaseAdapter {
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(layout,null);
             vh = new ViewHolder();
-            vh.nro = convertView.findViewById(R.id.textViewNumero);
-            vh.precio = convertView.findViewById(R.id.textViewPrecio);
-            vh.stock = convertView.findViewById(R.id.textViewStock);
+            vh.nameMarket = convertView.findViewById(R.id.textViewMarket);
             convertView.setTag(vh);
         }else{
             vh = (ViewHolder) convertView.getTag();
         }
-        Product product = list.get(position);
-        vh.nro.setText(Integer.toString(product.getNro()));
-        vh.precio.setText(Float.toString(product.getPrecio()));
-        vh.stock.setText(Integer.toString(product.getStock()));
+        Market market = list.get(position);
+        vh.nameMarket.setText(market.getName());
         return convertView;
     }
 
     public class ViewHolder{
-        TextView nro;
-        TextView precio;
-        TextView stock;
+        TextView nameMarket;
     }
 }

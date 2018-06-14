@@ -1,12 +1,12 @@
-package pe.anthony.sidp.activities;
+package pe.anthony.sidp.presentation.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +23,8 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.internal.IOException;
 import pe.anthony.sidp.R;
-import pe.anthony.sidp.models.User;
-import pe.anthony.sidp.util.SessionManager;
+import pe.anthony.sidp.data.entities.User;
+import pe.anthony.sidp.utils.SessionManager;
 
 public class MainActivity extends AppCompatActivity {
 

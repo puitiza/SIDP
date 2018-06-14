@@ -8,9 +8,9 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
-import pe.anthony.sidp.models.Market;
-import pe.anthony.sidp.models.Product;
-import pe.anthony.sidp.models.User;
+import pe.anthony.sidp.data.entities.Market;
+import pe.anthony.sidp.data.entities.Product;
+import pe.anthony.sidp.data.entities.User;
 
 /**
  * Created by ANTHONY on 4/04/2018.

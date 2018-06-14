@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     android:id="@+id/rootLayout"
-    tools:context="pe.anthony.sidp.activities.MainActivity">
+    tools:context=".presentation.activities.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"

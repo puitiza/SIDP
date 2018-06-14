@@ -1,4 +1,4 @@
-package pe.anthony.sidp.models;
+package pe.anthony.sidp.data.entities;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
