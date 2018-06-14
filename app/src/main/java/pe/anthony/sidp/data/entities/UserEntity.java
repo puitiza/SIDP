@@ -5,13 +5,12 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
 import pe.anthony.sidp.app.MyApplication;
-import pe.anthony.sidp.data.entities.Market;
 
 /**
  * Created by ANTHONY on 4/04/2018.
  */
 
-public class User extends RealmObject{
+public class UserEntity extends RealmObject{
 
     @PrimaryKey
     private int id;
@@ -25,14 +24,14 @@ public class User extends RealmObject{
     @Required
     private String email;
 
-    private RealmList<Market> markets;
+    private RealmList<MarketEntity> markets;
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(String username, String password, String email){
+    public UserEntity(String username, String password, String email){
         this.id= MyApplication.UserId.incrementAndGet();
-        this.markets = new RealmList<Market>();
+        this.markets = new RealmList<MarketEntity>();
         this.username = username;
         this.password = password;
         this.email = email;
@@ -66,11 +65,11 @@ public class User extends RealmObject{
         this.email = email;
     }
 
-    public RealmList<Market> getMarkets() {
+    public RealmList<MarketEntity> getMarkets() {
         return markets;
     }
 
-    public void setMarkets(RealmList<Market> markets) {
+    public void setMarkets(RealmList<MarketEntity> markets) {
         this.markets = markets;
     }
 }

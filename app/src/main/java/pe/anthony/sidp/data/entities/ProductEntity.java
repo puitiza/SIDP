@@ -9,7 +9,7 @@ import pe.anthony.sidp.app.MyApplication;
  * Created by ANTHONY on 6/04/2018.
  */
 
-public class Product extends RealmObject {
+public class ProductEntity extends RealmObject {
     @PrimaryKey
     private int id;
 
@@ -19,13 +19,13 @@ public class Product extends RealmObject {
 
     private int stock;
 
-    public Product(int nro, float precio, int stock) {
+    public ProductEntity(int nro, float precio, int stock) {
         this.id = MyApplication.ProductId.incrementAndGet();
         this.nro = nro;
         this.precio = precio;
         this.stock = stock;
     }
-    public Product(){}
+    public ProductEntity(){}
 
     public int getId() {
         return id;

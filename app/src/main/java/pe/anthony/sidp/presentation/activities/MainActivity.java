@@ -23,7 +23,7 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.internal.IOException;
 import pe.anthony.sidp.R;
-import pe.anthony.sidp.data.entities.User;
+import pe.anthony.sidp.data.entities.UserEntity;
 import pe.anthony.sidp.utils.SessionManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -91,13 +91,13 @@ public class MainActivity extends AppCompatActivity {
     private void validatelogin(String user, String pass) {
         //check username
         RealmResults listUsername = realm
-                .where(User.class)
+                .where(UserEntity.class)
                 .equalTo("username",user).findAll();
-        RealmResults<User> listaUsuarios = realm.where(User.class).findAll();
+        RealmResults<UserEntity> listaUsuarios = realm.where(UserEntity.class).findAll();
         if(listUsername.size()>0){
             //check password
-            RealmResults<User> listPass = realm
-                    .where(User.class)
+            RealmResults<UserEntity> listPass = realm
+                    .where(UserEntity.class)
                     .equalTo("username",user)
                     .equalTo("password",pass)
                     .findAll();
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void regiterUser(MaterialEditText edtUserName, MaterialEditText edtPassword, MaterialEditText edtEmail) {
         realm.beginTransaction();
-        User user = new User(edtUserName.getText().toString(),edtPassword.getText().toString(),edtEmail.getText().toString());
+        UserEntity user = new UserEntity(edtUserName.getText().toString(),edtPassword.getText().toString(),edtEmail.getText().toString());
         realm.copyToRealm(user);
         realm.commitTransaction();
     }

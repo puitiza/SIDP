@@ -20,24 +20,24 @@ import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmList;
 import pe.anthony.sidp.R;
-import pe.anthony.sidp.data.entities.Market;
-import pe.anthony.sidp.data.entities.User;
+import pe.anthony.sidp.data.entities.MarketEntity;
+import pe.anthony.sidp.data.entities.UserEntity;
 import pe.anthony.sidp.utils.SessionManager;
 import pe.anthony.sidp.presentation.adapters.MakerAdapter;
 
-public class supermarket extends AppCompatActivity implements RealmChangeListener<RealmList<Market>>,AdapterView.OnItemClickListener {
+public class supermarket extends AppCompatActivity implements RealmChangeListener<RealmList<MarketEntity>>,AdapterView.OnItemClickListener {
 
     private ListView listView;
     private FloatingActionButton fab;
 
     private MakerAdapter adapter;
-    private RealmList<Market> shops;
+    private RealmList<MarketEntity> shops;
     private Realm realm;
 
     FrameLayout rootLayout;
 
     private int userId;
-    private User user;
+    private UserEntity user;
 
     private SessionManager sessionManager;
 
@@ -53,7 +53,7 @@ public class supermarket extends AppCompatActivity implements RealmChangeListene
         }else{
             userId = sessionManager.getIdUser();
         }
-        user = realm.where(User.class).equalTo("id",userId).findFirst();
+        user = realm.where(UserEntity.class).equalTo("id",userId).findFirst();
 
         shops = user.getMarkets();
         shops.addChangeListener(this);
@@ -96,7 +96,7 @@ public class supermarket extends AppCompatActivity implements RealmChangeListene
         dialog.show();
     }
 
-    private void showAlertForEditSuperMarket(final Market shop) {
+    private void showAlertForEditSuperMarket(final MarketEntity shop) {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 
         dialog.setTitle("Editar Tienda");
@@ -122,7 +122,7 @@ public class supermarket extends AppCompatActivity implements RealmChangeListene
         dialog.show();
     }
 
-    private void editShop(String tiendaName, Market shop) {
+    private void editShop(String tiendaName, MarketEntity shop) {
         realm.beginTransaction();
         shop.setName(tiendaName);
         realm.copyToRealmOrUpdate(shop);
@@ -131,7 +131,7 @@ public class supermarket extends AppCompatActivity implements RealmChangeListene
 
     private void createNewShop(String tiendaName) {
         realm.beginTransaction();
-        Market _market = new Market(tiendaName);
+        MarketEntity _market = new MarketEntity(tiendaName);
         realm.copyToRealm(_market);
         user.getMarkets().add(_market);
         realm.commitTransaction();
@@ -158,7 +158,7 @@ public class supermarket extends AppCompatActivity implements RealmChangeListene
     }
 
     @Override
-    public void onChange(RealmList<Market> markets) {
+    public void onChange(RealmList<MarketEntity> markets) {
         adapter.notifyDataSetChanged();
     }
 

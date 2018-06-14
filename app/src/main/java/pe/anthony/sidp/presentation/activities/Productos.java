@@ -16,24 +16,24 @@ import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmList;
 import pe.anthony.sidp.R;
-import pe.anthony.sidp.data.entities.Market;
-import pe.anthony.sidp.data.entities.Product;
+import pe.anthony.sidp.data.entities.MarketEntity;
+import pe.anthony.sidp.data.entities.ProductEntity;
 import pe.anthony.sidp.presentation.adapters.ProductAdapter;
 import pe.anthony.sidp.utils.SessionManager;
 
-public class Productos extends AppCompatActivity implements RealmChangeListener<RealmList<Product>> {
+public class Productos extends AppCompatActivity implements RealmChangeListener<RealmList<ProductEntity>> {
 
     private ListView listView;
     private FloatingActionButton fab;
 
     private ProductAdapter adapter;
-    private RealmList<Product> products;
+    private RealmList<ProductEntity> products;
     private Realm realm;
 
     FrameLayout rootLayout;
 
     private int marketId;
-    private Market market;
+    private MarketEntity market;
 
     private SessionManager sessionManager;
 
@@ -44,7 +44,7 @@ public class Productos extends AppCompatActivity implements RealmChangeListener<
         sessionManager = new SessionManager(Productos.this);
         realm= Realm.getDefaultInstance();
         marketId = sessionManager.getIdShop();
-        market = realm.where(Market.class).equalTo("id",marketId).findFirst();
+        market = realm.where(MarketEntity.class).equalTo("id",marketId).findFirst();
         products = market.getProducts();
         products.addChangeListener(this);
         this.setTitle(market.getName());
@@ -107,14 +107,14 @@ public class Productos extends AppCompatActivity implements RealmChangeListener<
 
     private void createNewProducts(int cantidad, float precio, int stock) {
         realm.beginTransaction();
-        Product _producto = new Product(cantidad,precio,stock);
+        ProductEntity _producto = new ProductEntity(cantidad,precio,stock);
         realm.copyToRealm(_producto);
         market.getProducts().add(_producto);
         realm.commitTransaction();
     }
 
     @Override
-    public void onChange(RealmList<Product> products) {
+    public void onChange(RealmList<ProductEntity> products) {
         adapter.notifyDataSetChanged();
     }
 }

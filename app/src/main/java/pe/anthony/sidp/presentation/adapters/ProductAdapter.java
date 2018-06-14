@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import pe.anthony.sidp.R;
-import pe.anthony.sidp.data.entities.Product;
+import pe.anthony.sidp.data.entities.ProductEntity;
 
 /**
  * Created by ANTHONY on 6/04/2018.
@@ -19,10 +19,10 @@ import pe.anthony.sidp.data.entities.Product;
 public class ProductAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Product> list;
+    private List<ProductEntity> list;
     private int layout;
 
-    public ProductAdapter(Context context, List<Product> list, int layout) {
+    public ProductAdapter(Context context, List<ProductEntity> list, int layout) {
         this.context = context;
         this.list = list;
         this.layout = layout;
@@ -34,7 +34,7 @@ public class ProductAdapter extends BaseAdapter {
     }
 
     @Override
-    public Product getItem(int position) {
+    public ProductEntity getItem(int position) {
         return  list.get(position);
     }
 
@@ -56,7 +56,7 @@ public class ProductAdapter extends BaseAdapter {
         }else{
             vh = (ViewHolder) convertView.getTag();
         }
-        Product product = list.get(position);
+        ProductEntity product = list.get(position);
         vh.nro.setText(Integer.toString(product.getNro()));
         vh.precio.setText(Float.toString(product.getPrecio()));
         vh.stock.setText(Integer.toString(product.getStock()));

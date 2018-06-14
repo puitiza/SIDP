@@ -10,7 +10,7 @@ import pe.anthony.sidp.app.MyApplication;
  * Created by ANTHONY on 5/04/2018.
  */
 
-public class Market extends RealmObject {
+public class MarketEntity extends RealmObject {
 
     @PrimaryKey
     private int id;
@@ -18,14 +18,14 @@ public class Market extends RealmObject {
     @Required
     private String name;
 
-    private RealmList<Product> products;
+    private RealmList<ProductEntity> products;
 
-    public Market(String name) {
+    public MarketEntity(String name) {
         this.id = MyApplication.MarketId.incrementAndGet();
-        this.products = new RealmList<Product>();
+        this.products = new RealmList<ProductEntity>();
         this.name = name;
     }
-    public Market() {}
+    public MarketEntity() {}
 
     public int getId() {
         return id;
@@ -39,11 +39,11 @@ public class Market extends RealmObject {
         this.name = name;
     }
 
-    public RealmList<Product> getProducts() {
+    public RealmList<ProductEntity> getProducts() {
         return products;
     }
 
-    public void setProducts(RealmList<Product> products) {
+    public void setProducts(RealmList<ProductEntity> products) {
         this.products = products;
     }
 }

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import pe.anthony.sidp.R;
-import pe.anthony.sidp.data.entities.Market;
+import pe.anthony.sidp.data.entities.MarketEntity;
 
 /**
  * Created by ANTHONY on 5/04/2018.
@@ -19,10 +19,10 @@ import pe.anthony.sidp.data.entities.Market;
 public class MakerAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Market> list;
+    private List<MarketEntity> list;
     private int layout;
 
-    public MakerAdapter(Context context, List<Market> list, int layout) {
+    public MakerAdapter(Context context, List<MarketEntity> list, int layout) {
         this.context = context;
         this.list = list;
         this.layout = layout;
@@ -54,7 +54,7 @@ public class MakerAdapter extends BaseAdapter {
         }else{
             vh = (ViewHolder) convertView.getTag();
         }
-        Market market = list.get(position);
+        MarketEntity market = list.get(position);
         vh.nameMarket.setText(market.getName());
         return convertView;
     }

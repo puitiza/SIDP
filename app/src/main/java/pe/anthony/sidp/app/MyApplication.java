@@ -8,9 +8,9 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
-import pe.anthony.sidp.data.entities.Market;
-import pe.anthony.sidp.data.entities.Product;
-import pe.anthony.sidp.data.entities.User;
+import pe.anthony.sidp.data.entities.MarketEntity;
+import pe.anthony.sidp.data.entities.ProductEntity;
+import pe.anthony.sidp.data.entities.UserEntity;
 
 /**
  * Created by ANTHONY on 4/04/2018.
@@ -27,9 +27,9 @@ public class MyApplication extends Application{
         super.onCreate();
         setUpRealmConfig();
         Realm realm = Realm.getDefaultInstance();
-        UserId = getIdByTable(realm, User.class);
-        MarketId = getIdByTable(realm, Market.class);
-        ProductId = getIdByTable(realm, Product.class);
+        UserId = getIdByTable(realm, UserEntity.class);
+        MarketId = getIdByTable(realm, MarketEntity.class);
+        ProductId = getIdByTable(realm, ProductEntity.class);
         realm.close();
     }
 
