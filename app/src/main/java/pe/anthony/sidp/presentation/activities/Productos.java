@@ -41,7 +41,7 @@ public class Productos extends AppCompatActivity implements RealmChangeListener<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productos);
-        sessionManager = new SessionManager(Productos.this);
+        sessionManager = new SessionManager(this);
         realm= Realm.getDefaultInstance();
         marketId = sessionManager.getIdShop();
         market = realm.where(MarketEntity.class).equalTo("id",marketId).findFirst();

@@ -244,7 +244,7 @@ public class MapsActivity extends AppCompatActivity
 
                     /*Intent intent = new Intent(MapsActivity.this, DetalleServicio.class);
                     intent.putExtra("Cochera", info);*/
-                    Intent intent = new Intent(MapsActivity.this, Productos.class);
+                    Intent intent = new Intent(MapsActivity.this, supermarketActivity.class);//Productos.class
 //                    sessionManager.saveShop(sessionManager.getNameShop(),sessionManager.getIdShop());
                     startActivity(intent);
 

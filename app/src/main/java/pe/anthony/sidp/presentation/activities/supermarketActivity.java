@@ -25,7 +25,7 @@ import pe.anthony.sidp.data.entities.UserEntity;
 import pe.anthony.sidp.utils.SessionManager;
 import pe.anthony.sidp.presentation.adapters.MakerAdapter;
 
-public class supermarket extends AppCompatActivity implements RealmChangeListener<RealmList<MarketEntity>>,AdapterView.OnItemClickListener {
+public class supermarketActivity extends AppCompatActivity implements RealmChangeListener<RealmList<MarketEntity>>,AdapterView.OnItemClickListener {
 
     private ListView listView;
     private FloatingActionButton fab;
@@ -45,7 +45,7 @@ public class supermarket extends AppCompatActivity implements RealmChangeListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supermarket);
-        sessionManager = new SessionManager(supermarket.this);
+        sessionManager = new SessionManager(supermarketActivity.this);
         realm= Realm.getDefaultInstance();
 
         if(getIntent().getExtras()!= null){
