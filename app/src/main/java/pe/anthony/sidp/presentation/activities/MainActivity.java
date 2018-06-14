@@ -19,46 +19,52 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.File;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.internal.IOException;
 import pe.anthony.sidp.R;
 import pe.anthony.sidp.data.entities.UserEntity;
+import pe.anthony.sidp.presentation.contracts.MainContract;
+import pe.anthony.sidp.presentation.presenter.MainPresenter;
 import pe.anthony.sidp.utils.SessionManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainContract.View{
+    //button
+    @BindView(R.id.btnSignIn)       Button btnSignIn;
+    @BindView(R.id.btnRegister)     Button btnRegister;
+    //Edittext
+    @BindView(R.id.editText)        EditText editText;
+    @BindView(R.id.editTextPassword)EditText editTextPassword;
+    //RelativeLayout
+    @BindView(R.id.rootLayout)RelativeLayout rootLayout;
 
-    private Button btnSignIn,btnRegister;
-    private EditText editText, editTextPassword;
-    RelativeLayout rootLayout;
+    MainContract.Presenter presenter;
     private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         realm = Realm.getDefaultInstance();
-        btnSignIn = findViewById(R.id.btnSignIn);
-        btnRegister = findViewById(R.id.btnRegister);
-        editText = findViewById(R.id.editText);
-        editTextPassword =findViewById(R.id.editTextPassword);
-/*        realm.beginTransaction();
+        presenter = new MainPresenter(this,this,realm);
+/*      realm.beginTransaction();
         realm.deleteAll();
         realm.commitTransaction();*/
-
-        rootLayout = findViewById(R.id.rootLayout);
 
         //Eventos de click del login y el registro
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showRegisterDialog();
+                presenter.showRegisterDialog();
             }
         });
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showLoginDialog();
+                presenter.showLoginDialog(editText.getText().toString(),editTextPassword.getText().toString());
             }
         });
 //        exportarRealm();
@@ -80,89 +86,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showLoginDialog() {
-        if(editText.getText().length()==0 || editTextPassword.getText().length()==0){
-            Snackbar.make(rootLayout,"Ingrese todos los campos",Snackbar.LENGTH_SHORT).show();
-        }else{
-            validatelogin(editText.getText().toString(),editTextPassword.getText().toString());
-        }
+
+    @Override
+    public void showSnackbar(String message) {
+        Snackbar.make(rootLayout,message,Snackbar.LENGTH_SHORT).show();
     }
-
-    private void validatelogin(String user, String pass) {
-        //check username
-        RealmResults listUsername = realm
-                .where(UserEntity.class)
-                .equalTo("username",user).findAll();
-        RealmResults<UserEntity> listaUsuarios = realm.where(UserEntity.class).findAll();
-        if(listUsername.size()>0){
-            //check password
-            RealmResults<UserEntity> listPass = realm
-                    .where(UserEntity.class)
-                    .equalTo("username",user)
-                    .equalTo("password",pass)
-                    .findAll();
-            if(listPass.size()>0){
-                SessionManager sessionManager = new SessionManager(MainActivity.this);
-                sessionManager.saveLoginCredenetials(user,listPass.get(0).getId());
-                Intent intentSuperMarket = new Intent(this, SupermarketActivity.class);
-                intentSuperMarket.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intentSuperMarket.putExtra("id",listPass.get(0).getId());
-                startActivity(intentSuperMarket);
-                MainActivity.this.finish();
-            }else{
-                Snackbar.make(rootLayout,"Nombre de usuario y contraseña no son iguales, porfavor coloque el usuario y contraseña correcto",Snackbar.LENGTH_SHORT).show();
-            }
-        }else{
-            Snackbar.make(rootLayout,"usuario no encontrado",Snackbar.LENGTH_SHORT).show();
-        }
-    }
-
-    private void showRegisterDialog() {
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Registrar");
-        dialog.setMessage("Porfavor necesitamos tu correo");
-
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View register_layout = inflater.inflate(R.layout.layout_register,null);
-
-        final MaterialEditText edtUserName = register_layout.findViewById(R.id.edtUserName);
-        final MaterialEditText edtPassword = register_layout.findViewById(R.id.edtPassword);
-        final MaterialEditText edtEmail = register_layout.findViewById(R.id.edtEmail);
-        dialog.setView(register_layout);
-        dialog.setPositiveButton("registrar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-                if(TextUtils.isEmpty(edtUserName.getText().toString())){
-                    Snackbar.make(rootLayout,"Porfavor Ingrese el nombre de usuario",Snackbar.LENGTH_SHORT).show();
-                    return;
-                }
-                if(edtPassword.getText().toString().length()<6){
-                    Snackbar.make(rootLayout,"Contraseña demasiado corta",Snackbar.LENGTH_SHORT).show();
-                    return;
-                }
-                if(TextUtils.isEmpty(edtEmail.getText().toString())){
-                    Snackbar.make(rootLayout,"Por favor ingrese un correo electronico",Snackbar.LENGTH_SHORT).show();
-                    return;
-                }
-                regiterUser(edtUserName,edtPassword,edtEmail);
-                Snackbar.make(rootLayout,"Registro exitoso",Snackbar.LENGTH_SHORT).show();
-            }
-        });
-        dialog.setNegativeButton("cancelar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        });
-        dialog.show();
-    }
-
-    private void regiterUser(MaterialEditText edtUserName, MaterialEditText edtPassword, MaterialEditText edtEmail) {
-        realm.beginTransaction();
-        UserEntity user = new UserEntity(edtUserName.getText().toString(),edtPassword.getText().toString(),edtEmail.getText().toString());
-        realm.copyToRealm(user);
-        realm.commitTransaction();
-    }
-
 }

@@ -1,4 +1,4 @@
 package pe.anthony.sidp.presentation.contracts;
 
-public interface MapsContract {
+public interface SupermarketContract {
 }

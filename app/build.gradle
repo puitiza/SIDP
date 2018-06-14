@@ -44,5 +44,9 @@ dependencies {
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
 
+    //Esta libreria es para ya no ahcer findViewbyID
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
 
 }
