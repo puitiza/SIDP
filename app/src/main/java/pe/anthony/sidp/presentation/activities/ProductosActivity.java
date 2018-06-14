@@ -21,7 +21,7 @@ import pe.anthony.sidp.data.entities.ProductEntity;
 import pe.anthony.sidp.presentation.adapters.ProductAdapter;
 import pe.anthony.sidp.utils.SessionManager;
 
-public class Productos extends AppCompatActivity implements RealmChangeListener<RealmList<ProductEntity>> {
+public class ProductosActivity extends AppCompatActivity implements RealmChangeListener<RealmList<ProductEntity>> {
 
     private ListView listView;
     private FloatingActionButton fab;

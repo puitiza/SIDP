@@ -50,7 +50,7 @@
             android:name=".presentation.activities.MapsActivity"
             android:label="@string/title_activity_maps"
             android:parentActivityName=".presentation.activities.supermarketActivity" />
-        <activity android:name=".presentation.activities.Productos"></activity>
+        <activity android:name=".presentation.activities.ProductosActivity"></activity>
     </application>
 
 </manifest>
