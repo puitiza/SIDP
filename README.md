@@ -2,21 +2,21 @@
 Las Librerias necesarias:  
 1. Library necesarias de google maps  
 
-> implementation'com.google.android.gms:play-services-maps:12.0.1' 
-> implementation'com.google.android.gms:play-services:12.0.1' 
+> implementation'com.google.android.gms:play-services-maps:12.0.1'  
+> implementation'com.google.android.gms:play-services:12.0.1'  
 
 2. Add library to supportDesign  
-> implementation'com.android.support:cardview-v7:27.1.1'
-> implementation 'com.android.support:design:27.1.1'
-> implementation 'com.android.support:recyclerview-v7:27.1.1'
+> implementation'com.android.support:cardview-v7:27.1.1'  
+> implementation 'com.android.support:design:27.1.1'  
+> implementation 'com.android.support:recyclerview-v7:27.1.1'  
 
 3.  Add library to realm
 > apply plugin: 'realm-android'
 
 4. Add Library extras
-> implementation 'com.github.d-max:spots-dialog:0.7@aar'
-> implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
-> implementation 'com.rengwuxian.materialedittext:library:2.1.4'
+> implementation 'com.github.d-max:spots-dialog:0.7@aar'  
+> implementation 'uk.co.chrisjenx:calligraphy:2.3.0'  
+> implementation 'com.rengwuxian.materialedittext:library:2.1.4'  
 
 
 Preview  
