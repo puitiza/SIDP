@@ -22,10 +22,10 @@ import io.realm.RealmList;
 import pe.anthony.sidp.R;
 import pe.anthony.sidp.data.entities.MarketEntity;
 import pe.anthony.sidp.data.entities.UserEntity;
-import pe.anthony.sidp.utils.SessionManager;
 import pe.anthony.sidp.presentation.adapters.MakerAdapter;
+import pe.anthony.sidp.utils.SessionManager;
 
-public class supermarketActivity extends AppCompatActivity implements RealmChangeListener<RealmList<MarketEntity>>,AdapterView.OnItemClickListener {
+public class SupermarketActivity extends AppCompatActivity implements RealmChangeListener<RealmList<MarketEntity>>,AdapterView.OnItemClickListener {
 
     private ListView listView;
     private FloatingActionButton fab;
@@ -45,7 +45,7 @@ public class supermarketActivity extends AppCompatActivity implements RealmChang
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supermarket);
-        sessionManager = new SessionManager(supermarketActivity.this);
+        sessionManager = new SessionManager(SupermarketActivity.this);
         realm= Realm.getDefaultInstance();
 
         if(getIntent().getExtras()!= null){

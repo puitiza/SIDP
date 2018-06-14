@@ -236,7 +236,7 @@ public class MapsActivity extends AppCompatActivity
 
         mMap.addMarker(new MarkerOptions()
                 .title(nameShop).position(megaplaza)
-                .snippet("Productosx Disponibles:" )
+                .snippet("Productos Disponibles:" )
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.carrito)));
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             public void onInfoWindowClick(Marker marker) {
@@ -244,7 +244,7 @@ public class MapsActivity extends AppCompatActivity
 
                     /*Intent intent = new Intent(MapsActivity.this, DetalleServicio.class);
                     intent.putExtra("Cochera", info);*/
-                    Intent intent = new Intent(MapsActivity.this, supermarketActivity.class);//Productosx.class
+                    Intent intent = new Intent(MapsActivity.this, ProductosActivity.class);//Productosx.class
 //                    sessionManager.saveShop(sessionManager.getNameShop(),sessionManager.getIdShop());
                     startActivity(intent);
 
