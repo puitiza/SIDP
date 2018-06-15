@@ -23,7 +23,7 @@ import pe.anthony.sidp.R;
 import pe.anthony.sidp.data.entities.MarketEntity;
 import pe.anthony.sidp.data.entities.UserEntity;
 import pe.anthony.sidp.presentation.adapters.MakerAdapter;
-import pe.anthony.sidp.utils.SessionManager;
+import pe.anthony.sidp.data.local.SessionManager;
 
 public class SupermarketActivity extends AppCompatActivity implements RealmChangeListener<RealmList<MarketEntity>>,AdapterView.OnItemClickListener {
 

@@ -1,4 +1,4 @@
-package pe.anthony.sidp.utils;
+package pe.anthony.sidp.data.local;
 
 import android.content.Context;
 import android.content.SharedPreferences;

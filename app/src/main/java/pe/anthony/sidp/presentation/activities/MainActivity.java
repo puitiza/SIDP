@@ -1,34 +1,24 @@
 package pe.anthony.sidp.presentation.activities;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.rengwuxian.materialedittext.MaterialEditText;
-
 import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
-import io.realm.RealmResults;
 import io.realm.internal.IOException;
 import pe.anthony.sidp.R;
-import pe.anthony.sidp.data.entities.UserEntity;
 import pe.anthony.sidp.presentation.contracts.MainContract;
 import pe.anthony.sidp.presentation.presenter.MainPresenter;
-import pe.anthony.sidp.utils.SessionManager;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View{
     //button

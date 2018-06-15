@@ -19,7 +19,7 @@ import pe.anthony.sidp.R;
 import pe.anthony.sidp.data.entities.MarketEntity;
 import pe.anthony.sidp.data.entities.ProductEntity;
 import pe.anthony.sidp.presentation.adapters.ProductAdapter;
-import pe.anthony.sidp.utils.SessionManager;
+import pe.anthony.sidp.data.local.SessionManager;
 
 public class ProductosActivity extends AppCompatActivity implements RealmChangeListener<RealmList<ProductEntity>> {
 

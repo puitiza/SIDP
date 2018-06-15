@@ -17,7 +17,7 @@ import pe.anthony.sidp.R;
 import pe.anthony.sidp.data.entities.UserEntity;
 import pe.anthony.sidp.presentation.activities.SupermarketActivity;
 import pe.anthony.sidp.presentation.contracts.MainContract;
-import pe.anthony.sidp.utils.SessionManager;
+import pe.anthony.sidp.data.local.SessionManager;
 
 public class MainPresenter implements MainContract.Presenter {
 

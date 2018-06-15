@@ -36,7 +36,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import pe.anthony.sidp.R;
-import pe.anthony.sidp.utils.SessionManager;
+import pe.anthony.sidp.data.local.SessionManager;
 
 public class MapsActivity extends AppCompatActivity
         implements OnMapReadyCallback,
