@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmList;
@@ -24,117 +26,36 @@ import pe.anthony.sidp.data.entities.MarketEntity;
 import pe.anthony.sidp.data.entities.UserEntity;
 import pe.anthony.sidp.presentation.adapters.MakerAdapter;
 import pe.anthony.sidp.data.local.SessionManager;
+import pe.anthony.sidp.presentation.contracts.MainContract;
+import pe.anthony.sidp.presentation.contracts.SupermarketContract;
+import pe.anthony.sidp.presentation.presenter.SupermarketPresenter;
 
-public class SupermarketActivity extends AppCompatActivity implements RealmChangeListener<RealmList<MarketEntity>>,AdapterView.OnItemClickListener {
+public class SupermarketActivity extends AppCompatActivity implements SupermarketContract.View {
 
-    private ListView listView;
-    private FloatingActionButton fab;
+    @BindView(R.id.listViewSupermarket)     ListView listView;
+    @BindView(R.id.fabAddSuperM)     FloatingActionButton fab;
+    @BindView(R.id.superMarterLayout) FrameLayout rootLayout;
 
-    private MakerAdapter adapter;
     private RealmList<MarketEntity> shops;
-    private Realm realm;
-
-    FrameLayout rootLayout;
-
-    private int userId;
-    private UserEntity user;
-
-    private SessionManager sessionManager;
+    SupermarketContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supermarket);
-        sessionManager = new SessionManager(SupermarketActivity.this);
-        realm= Realm.getDefaultInstance();
 
-        if(getIntent().getExtras()!= null){
-            userId = getIntent().getExtras().getInt("id");
-        }else{
-            userId = sessionManager.getIdUser();
-        }
-        user = realm.where(UserEntity.class).equalTo("id",userId).findFirst();
+        ButterKnife.bind(this);
+        presenter = new SupermarketPresenter(this,this,listView);
 
-        shops = user.getMarkets();
-        shops.addChangeListener(this);
+        shops = presenter.init();
 
-        fab = findViewById(R.id.fabAddSuperM);
-        listView = findViewById(R.id.listViewSupermarket);
-        adapter = new MakerAdapter(this,shops,R.layout.list_view_market_item);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(this);
-        rootLayout = findViewById(R.id.superMarterLayout);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showAlertForCreateSuperMarket();
+                presenter.showAlertForCreateSuperMarket();
             }
         });
         registerForContextMenu(listView);
-    }
-
-    private void showAlertForCreateSuperMarket() {
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-
-        dialog.setTitle("Registrar Tienda");
-        View viewInflated = LayoutInflater.from(this).inflate(R.layout.layout_dialog_create_supermarket, null);
-        dialog.setView(viewInflated);
-
-        final EditText tienda = viewInflated.findViewById(R.id.editNameTienda);
-
-        dialog.setPositiveButton("Agregar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                String tiendaName = tienda.getText().toString().trim();
-                if(tiendaName.length()>0){
-                    createNewShop(tiendaName);
-                }else{
-                    Snackbar.make(rootLayout,"Ingrese un nombre de Tienda",Snackbar.LENGTH_SHORT).show();
-                }
-            }
-        });
-        dialog.show();
-    }
-
-    private void showAlertForEditSuperMarket(final MarketEntity shop) {
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-
-        dialog.setTitle("Editar Tienda");
-        View viewInflated = LayoutInflater.from(this).inflate(R.layout.layout_dialog_create_supermarket, null);
-        dialog.setView(viewInflated);
-
-        final EditText tienda = viewInflated.findViewById(R.id.editNameTienda);
-        tienda.setText(shop.getName());
-        dialog.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                String tiendaName = tienda.getText().toString().trim();
-                if(tiendaName.isEmpty()){
-                    Snackbar.make(rootLayout,"Ingrese un nombre de Tienda para editar",Snackbar.LENGTH_SHORT).show();
-                }else if(tiendaName.equals(shop.getName())){
-                    Snackbar.make(rootLayout,"El nombre ingresado es el mismo",Snackbar.LENGTH_SHORT).show();
-                }
-                else{
-                    editShop(tiendaName,shop);
-                }
-            }
-        });
-        dialog.show();
-    }
-
-    private void editShop(String tiendaName, MarketEntity shop) {
-        realm.beginTransaction();
-        shop.setName(tiendaName);
-        realm.copyToRealmOrUpdate(shop);
-        realm.commitTransaction();
-    }
-
-    private void createNewShop(String tiendaName) {
-        realm.beginTransaction();
-        MarketEntity _market = new MarketEntity(tiendaName);
-        realm.copyToRealm(_market);
-        user.getMarkets().add(_market);
-        realm.commitTransaction();
     }
 
     @Override
@@ -149,24 +70,16 @@ public class SupermarketActivity extends AppCompatActivity implements RealmChang
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()){
             case R.id.edit_superMarket :
-                showAlertForEditSuperMarket(shops.get(info.position));
-                return true;
+                 presenter.showAlertForEditSuperMarket(shops.get(info.position));
+                 return true;
 
             default:
-                return  super.onContextItemSelected(item);
+                 return  super.onContextItemSelected(item);
         }
     }
 
     @Override
-    public void onChange(RealmList<MarketEntity> markets) {
-        adapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-        sessionManager.saveShop(shops.get(position).getName(),shops.get(position).getId());
-        Intent intent = new Intent(this,MapsActivity.class);
-        intent.putExtra("id",shops.get(position).getId());
-        startActivity(intent);
+    public void showSnackbar(String message) {
+        Snackbar.make(rootLayout,message,Snackbar.LENGTH_SHORT).show();
     }
 }
