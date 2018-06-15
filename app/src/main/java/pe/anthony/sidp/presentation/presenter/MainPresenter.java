@@ -4,17 +4,23 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.io.File;
+
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.internal.IOException;
 import pe.anthony.sidp.R;
 import pe.anthony.sidp.data.entities.UserEntity;
+import pe.anthony.sidp.presentation.activities.MainActivity;
 import pe.anthony.sidp.presentation.activities.SupermarketActivity;
 import pe.anthony.sidp.presentation.contracts.MainContract;
 import pe.anthony.sidp.data.local.SessionManager;
@@ -23,6 +29,7 @@ public class MainPresenter implements MainContract.Presenter {
 
     Context context;
     MainContract.View view;
+    SessionManager sessionManager;
     private Realm realm;
 
     public MainPresenter(Context context, MainContract.View view, Realm realm) {
@@ -83,6 +90,22 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
+    public void exportarRealm() {
+        try {
+            final File file = new File(Environment.getExternalStorageDirectory().getPath().concat("/default.realm"));
+            if (file.exists()) {
+                //noinspection ResultOfMethodCallIgnored
+                file.delete();
+            }
+
+            realm.writeCopyTo(file);
+            view.showToast("Success export realm file");
+        } catch (IOException e) {
+            realm.close();
+            e.printStackTrace();
+        }
+    }
+
     public void validatelogin(String user, String pass) {
         //check username
         RealmResults listUsername = realm.where(UserEntity.class)
@@ -90,13 +113,12 @@ public class MainPresenter implements MainContract.Presenter {
 //        RealmResults<UserEntity> listaUsuarios = realm.where(UserEntity.class).findAll();
         if(listUsername.size()>0){
             //check password
-            RealmResults<UserEntity> listPass = realm
-                    .where(UserEntity.class)
-                    .equalTo("username",user)
-                    .equalTo("password",pass)
-                    .findAll();
+            RealmResults<UserEntity> listPass = realm.where(UserEntity.class)
+                                                     .equalTo("username",user)
+                                                     .equalTo("password",pass)
+                                                     .findAll();
             if(listPass.size()>0){
-                SessionManager sessionManager = new SessionManager(context);
+                sessionManager = new SessionManager(context);
                 sessionManager.saveLoginCredenetials(user,listPass.get(0).getId());
                 Intent intentSuperMarket = new Intent(context, SupermarketActivity.class);
                 intentSuperMarket.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -111,7 +133,6 @@ public class MainPresenter implements MainContract.Presenter {
         }
     }
 
-    @Override
     public void regiterUser(MaterialEditText edtUserName, MaterialEditText edtPassword, MaterialEditText edtEmail) {
         realm.beginTransaction();
         UserEntity user = new UserEntity(edtUserName.getText().toString(),edtPassword.getText().toString(),edtEmail.getText().toString());

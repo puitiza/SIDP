@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         ButterKnife.bind(this);
         realm = Realm.getDefaultInstance();
         presenter = new MainPresenter(this,this,realm);
-/*      realm.beginTransaction();
+/*      realm.beginTransaction(); Para limpiar la base de datos
         realm.deleteAll();
         realm.commitTransaction();*/
 
@@ -57,28 +57,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 presenter.showLoginDialog(editText.getText().toString(),editTextPassword.getText().toString());
             }
         });
-//        exportarRealm();
     }
-
-    private void exportarRealm() {
-        try {
-            final File file = new File(Environment.getExternalStorageDirectory().getPath().concat("/default.realm"));
-            if (file.exists()) {
-                //noinspection ResultOfMethodCallIgnored
-                file.delete();
-            }
-
-            realm.writeCopyTo(file);
-            Toast.makeText(MainActivity.this, "Success export realm file", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            realm.close();
-            e.printStackTrace();
-        }
-    }
-
 
     @Override
     public void showSnackbar(String message) {
         Snackbar.make(rootLayout,message,Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

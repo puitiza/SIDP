@@ -6,6 +6,7 @@ public interface MainContract {
 
     interface  View{
         void showSnackbar(String message);
+        void showToast(String message);
        /* void loginSuccessfully();
         void loginError();*/
     }
@@ -13,7 +14,6 @@ public interface MainContract {
     interface Presenter{
         void showLoginDialog (String user, String pass);
         void showRegisterDialog();
-        void validatelogin(String user, String pass);
-        void regiterUser(MaterialEditText edtUserName, MaterialEditText edtPassword, MaterialEditText edtEmail);
+        void exportarRealm();
     }
 }
