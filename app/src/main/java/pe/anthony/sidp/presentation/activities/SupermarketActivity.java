@@ -48,6 +48,7 @@ public class SupermarketActivity extends AppCompatActivity implements Supermarke
         presenter = new SupermarketPresenter(this,this,listView);
 
         shops = presenter.init();
+        
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
