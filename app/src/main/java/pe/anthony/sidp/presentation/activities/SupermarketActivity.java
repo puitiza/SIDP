@@ -48,7 +48,6 @@ public class SupermarketActivity extends AppCompatActivity implements Supermarke
         presenter = new SupermarketPresenter(this,this,listView);
 
         shops = presenter.init();
-        
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +72,6 @@ public class SupermarketActivity extends AppCompatActivity implements Supermarke
             case R.id.edit_superMarket :
                  presenter.showAlertForEditSuperMarket(shops.get(info.position));
                  return true;
-
             default:
                  return  super.onContextItemSelected(item);
         }
