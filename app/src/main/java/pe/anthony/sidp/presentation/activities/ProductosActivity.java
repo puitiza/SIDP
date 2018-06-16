@@ -69,7 +69,7 @@ public class ProductosActivity extends AppCompatActivity implements RealmChangeL
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 
         dialog.setTitle("Registrar informacion de productos");
-        View viewInflated = LayoutInflater.from(this).inflate(R.layout.layout_dialog_create_productos, null);
+        View viewInflated = LayoutInflater.from(this).inflate(R.layout.dialogfragment_create_productos, null);
         dialog.setView(viewInflated);
 
         final EditText cantidad = viewInflated.findViewById(R.id.editNameCantidad);

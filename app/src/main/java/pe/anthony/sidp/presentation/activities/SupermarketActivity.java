@@ -1,33 +1,23 @@
 package pe.anthony.sidp.presentation.activities;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.realm.Realm;
-import io.realm.RealmChangeListener;
 import io.realm.RealmList;
 import pe.anthony.sidp.R;
 import pe.anthony.sidp.data.entities.MarketEntity;
-import pe.anthony.sidp.data.entities.UserEntity;
-import pe.anthony.sidp.presentation.adapters.MakerAdapter;
-import pe.anthony.sidp.data.local.SessionManager;
-import pe.anthony.sidp.presentation.contracts.MainContract;
 import pe.anthony.sidp.presentation.contracts.SupermarketContract;
+import pe.anthony.sidp.presentation.fragments.CreateSuperMarketDialog;
 import pe.anthony.sidp.presentation.presenter.SupermarketPresenter;
 
 public class SupermarketActivity extends AppCompatActivity implements SupermarketContract.View {
@@ -52,7 +42,9 @@ public class SupermarketActivity extends AppCompatActivity implements Supermarke
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.showAlertForCreateSuperMarket();
+                //presenter.showAlertForCreateSuperMarket();
+                CreateSuperMarketDialog dialog = new CreateSuperMarketDialog();
+                dialog.show(getSupportFragmentManager(),"sddsfds");
             }
         });
         registerForContextMenu(listView);

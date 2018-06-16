@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,7 +68,7 @@ public class SupermarketPresenter implements RealmChangeListener<RealmList<Marke
         final AlertDialog.Builder dialog = new AlertDialog.Builder(context);
 
         dialog.setTitle("Editar Tienda");
-        View viewInflated = LayoutInflater.from(context).inflate(R.layout.layout_dialog_create_supermarket, null);
+        View viewInflated = LayoutInflater.from(context).inflate(R.layout.dialogfragment_create_supermarket, null);
         dialog.setView(viewInflated);
 
         final EditText tienda = viewInflated.findViewById(R.id.editNameTienda);
@@ -96,7 +95,7 @@ public class SupermarketPresenter implements RealmChangeListener<RealmList<Marke
     public void showAlertForCreateSuperMarket() {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(context);
         dialog.setTitle("Registrar Tienda");
-        View viewInflated = LayoutInflater.from(context).inflate(R.layout.layout_dialog_create_supermarket, null);
+        View viewInflated = LayoutInflater.from(context).inflate(R.layout.dialogfragment_create_supermarket, null);
         dialog.setView(viewInflated);
 
         final EditText tienda = viewInflated.findViewById(R.id.editNameTienda);

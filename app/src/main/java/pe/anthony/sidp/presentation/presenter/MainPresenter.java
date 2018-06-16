@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
 
@@ -20,7 +19,6 @@ import io.realm.RealmResults;
 import io.realm.internal.IOException;
 import pe.anthony.sidp.R;
 import pe.anthony.sidp.data.entities.UserEntity;
-import pe.anthony.sidp.presentation.activities.MainActivity;
 import pe.anthony.sidp.presentation.activities.SupermarketActivity;
 import pe.anthony.sidp.presentation.contracts.MainContract;
 import pe.anthony.sidp.data.local.SessionManager;
@@ -54,7 +52,7 @@ public class MainPresenter implements MainContract.Presenter {
         dialog.setMessage("Porfavor necesitamos tu correo");
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        View register_layout = inflater.inflate(R.layout.layout_register,null);
+        View register_layout = inflater.inflate(R.layout.dialogfragment_register,null);
 
         final MaterialEditText edtUserName = register_layout.findViewById(R.id.edtUserName);
         final MaterialEditText edtPassword = register_layout.findViewById(R.id.edtPassword);
