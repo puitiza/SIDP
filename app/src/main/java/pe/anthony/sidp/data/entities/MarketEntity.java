@@ -4,7 +4,7 @@ import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
-import pe.anthony.sidp.app.MyApplication;
+import pe.anthony.sidp.app.sidp;
 
 /**
  * Created by ANTHONY on 5/04/2018.
@@ -21,7 +21,7 @@ public class MarketEntity extends RealmObject {
     private RealmList<ProductEntity> products;
 
     public MarketEntity(String name) {
-        this.id = MyApplication.MarketId.incrementAndGet();
+        this.id = sidp.MarketId.incrementAndGet();
         this.products = new RealmList<ProductEntity>();
         this.name = name;
     }

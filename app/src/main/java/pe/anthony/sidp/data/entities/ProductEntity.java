@@ -2,7 +2,7 @@ package pe.anthony.sidp.data.entities;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import pe.anthony.sidp.app.MyApplication;
+import pe.anthony.sidp.app.sidp;
 
 /**
  * Created by ANTHONY on 6/04/2018.
@@ -19,7 +19,7 @@ public class ProductEntity extends RealmObject {
     private int stock;
 
     public ProductEntity(int nro, float precio, int stock) {
-        this.id = MyApplication.ProductId.incrementAndGet();
+        this.id = sidp.ProductId.incrementAndGet();
         this.nro = nro;
         this.precio = precio;
         this.stock = stock;

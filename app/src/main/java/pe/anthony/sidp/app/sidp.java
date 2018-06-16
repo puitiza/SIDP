@@ -15,7 +15,7 @@ import pe.anthony.sidp.data.entities.UserEntity;
 /**
  * Created by ANTHONY on 4/04/2018.
  */
-public class MyApplication extends Application{
+public class sidp extends Application{
 
     public  static AtomicInteger UserId = new AtomicInteger();
     public  static AtomicInteger MarketId = new AtomicInteger();
