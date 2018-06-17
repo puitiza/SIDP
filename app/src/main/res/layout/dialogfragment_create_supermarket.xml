@@ -2,10 +2,8 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/dialog_rounded_bg"
-    android:layout_margin="15dp"
     >
 
     <TextView
@@ -15,9 +13,15 @@
         android:textStyle="bold"
         android:textColor="#000000"
         android:layout_marginBottom="20dp"
+        android:layout_margin="15dp"
         android:layout_height="wrap_content" />
     <EditText
         android:id="@+id/editNameTienda"
+        android:layout_margin="15dp"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:inputType="text"
+        android:ellipsize="end"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nombre de la Tienda"/>
@@ -30,5 +34,6 @@
         android:textColor="@color/colorAccent"
         android:layout_gravity="right"
         android:layout_marginTop="20dp"
+        android:layout_margin="15dp"
         android:layout_height="wrap_content" />
 </LinearLayout>

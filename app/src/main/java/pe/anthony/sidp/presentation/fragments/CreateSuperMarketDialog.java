@@ -37,6 +37,12 @@ public class CreateSuperMarketDialog extends DialogFragment {
         return f;
     }*/
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.MyDialog3);
+        setCancelable(true);
+    }
 
 
     @Override
@@ -44,10 +50,10 @@ public class CreateSuperMarketDialog extends DialogFragment {
         View v = inflater.inflate(R.layout.dialogfragment_create_supermarket, container, false);
         ButterKnife.bind(this, v);
 
-        if (getDialog() != null && getDialog().getWindow() != null) {
+     /*   if (getDialog() != null && getDialog().getWindow() != null) {
             getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        }
+        }*/
 
         txt_registarTienda.setOnClickListener(new View.OnClickListener() {
             @Override
