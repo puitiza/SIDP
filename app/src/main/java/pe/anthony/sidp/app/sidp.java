@@ -1,6 +1,8 @@
 package pe.anthony.sidp.app;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -20,6 +22,12 @@ public class sidp extends Application{
     public  static AtomicInteger UserId = new AtomicInteger();
     public  static AtomicInteger MarketId = new AtomicInteger();
     public  static AtomicInteger ProductId = new AtomicInteger();
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     //Voy a configurar cosas global de la app y esto se va configurar cuando se inice la app
     @Override
