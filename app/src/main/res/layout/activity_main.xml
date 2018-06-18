@@ -33,20 +33,35 @@
             android:layout_width="0dp"
             android:layout_height="0dp">
         </view>
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="250dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.5"
-            android:background="#11000000"
-            android:drawableLeft="@drawable/ic_action_user"
-            android:ems="10"
-            android:hint="Nombre de Usuario"
-            android:inputType="textPersonName"
-            android:textColorHint="#c7c7c7"
-            android:textColor="#fafafa"
-            android:textSize="16dp"
-             />
+            android:weightSum="4"
+            android:orientation="horizontal">
+            <view
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"/>
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="#11000000"
+                android:drawableLeft="@drawable/ic_action_user"
+                android:ems="10"
+                android:hint="Nombre de Usuario"
+                android:inputType="textPersonName"
+                android:textColorHint="#c7c7c7"
+                android:textColor="#fafafa"
+                android:textSize="16dp" />
+            <view
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"/>
+        </LinearLayout>
+
         <view
             android:layout_weight="1"
             android:layout_width="0dp"
