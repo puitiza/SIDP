@@ -67,19 +67,34 @@
             android:layout_width="0dp"
             android:layout_height="0dp">
         </view>
-        <EditText
-            android:id="@+id/editTextPassword"
-            android:layout_width="250dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.5"
-            android:background="#11000000"
-            android:drawableLeft="@drawable/ic_action_pass"
-            android:ems="10"
-            android:hint="Contraseña"
-            android:textColorHint="#c7c7c7"
-            android:textColor="#fafafa"
-            android:inputType="textPassword"
-            />
+            android:weightSum="4"
+            android:orientation="horizontal">
+            <view
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"/>
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="#11000000"
+                android:drawableLeft="@drawable/ic_action_pass"
+                android:ems="10"
+                android:hint="Contraseña"
+                android:textColorHint="#c7c7c7"
+                android:textColor="#fafafa"
+                android:inputType="textPassword"
+                />
+            <view
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"/>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/linearLayout2"
