@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
 
@@ -49,11 +50,10 @@ public class MainPresenter implements MainContract.Presenter {
     public void showRegisterDialog() {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(context);
         dialog.setTitle("Registrar");
-        dialog.setMessage("Porfavor necesitamos tu correo");
+        dialog.setMessage("Porfavor necesitamos tus datos");
 
         LayoutInflater inflater = LayoutInflater.from(context);
         View register_layout = inflater.inflate(R.layout.dialogfragment_register,null);
-
         final MaterialEditText edtUserName = register_layout.findViewById(R.id.edtUserName);
         final MaterialEditText edtPassword = register_layout.findViewById(R.id.edtPassword);
         final MaterialEditText edtEmail = register_layout.findViewById(R.id.edtEmail);

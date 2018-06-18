@@ -11,6 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+      <!-- Agregando esto en el LinearLayout de arriba, hara que el keyboard se oculte
+        android:focusableInTouchMode="true"
+        android:focusable="true"-->
+
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtUserName"
             android:hint="Nombre de Usuario"
