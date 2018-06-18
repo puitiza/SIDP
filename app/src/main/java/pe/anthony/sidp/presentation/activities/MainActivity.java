@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -28,7 +29,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @BindView(R.id.editText)        EditText editText;
     @BindView(R.id.editTextPassword)EditText editTextPassword;
     //RelativeLayout
-    @BindView(R.id.rootLayout)RelativeLayout rootLayout;
+    @BindView(R.id.rootLayout)
+    LinearLayout rootLayout;
 
     MainContract.Presenter presenter;
     private Realm realm;
