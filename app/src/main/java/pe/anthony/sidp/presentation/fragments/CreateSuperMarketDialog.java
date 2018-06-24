@@ -25,26 +25,30 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import pe.anthony.sidp.R;
+import pe.anthony.sidp.data.entities.MarketEntity;
 import pe.anthony.sidp.presentation.contracts.SupermarketContract;
 import pe.anthony.sidp.presentation.presenter.SupermarketPresenter;
 
 public class CreateSuperMarketDialog extends DialogFragment {
 
-    @BindView(R.id.btn_registarTienda)
-    Button btn_registarTienda;
-    @BindView(R.id.editNameTienda)
-    EditText editNameTienda;
+    @BindView(R.id.btn_registarTienda)    Button btn_registarTienda;
+    @BindView(R.id.btn_editarTienda)      Button btn_editarTienda;
+    @BindView(R.id.editNameTienda)        EditText editNameTienda;
+    @BindView(R.id.txt_Editar)            TextView txt_Editar;
+    @BindView(R.id.txt_Registrar)         TextView txt_Registrar;
+
     ListView listView;
     SupermarketContract.Presenter presenter;
 
 //  Esto es para cuando quieres pasarle datos al dialogFragment
-    public static CreateSuperMarketDialog newInstance(String tienda){
-        CreateSuperMarketDialog f = new CreateSuperMarketDialog();
+    public static CreateSuperMarketDialog newInstance(int item, MarketEntity shop){
+        CreateSuperMarketDialog frag = new CreateSuperMarketDialog();
         // Supply index input as an argument.
         Bundle args = new Bundle();
-        args.putString("tienda", tienda);
-        f.setArguments(args);
-        return f;
+        args.putInt("item", item);
+        args.putSerializable("shop",shop);
+        frag.setArguments(args);
+        return frag;
     }
 
     @Override
@@ -65,20 +69,8 @@ public class CreateSuperMarketDialog extends DialogFragment {
         TypedValue outValue = new TypedValue();
         getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
         btn_registarTienda.setBackgroundResource(outValue.resourceId);
+        btn_editarTienda.setBackgroundResource(outValue.resourceId);
 //      -----------------------------------------------------------------------------------------------------------------------------------------
-        btn_registarTienda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String tiendaName = editNameTienda.getText().toString().trim();
-                if(tiendaName.length()>0){
-                    presenter.init();//Si quiero usar el presenter tengo que volver a instancearlo
-                    presenter.createNewShop(tiendaName);
-                }else{
-                    Toast.makeText(getContext(), "Ingrese un nombre de Tienda", Toast.LENGTH_SHORT).show();
-                }
-                getDialog().dismiss();
-            }
-        });
         return v;
     }
 
@@ -86,6 +78,67 @@ public class CreateSuperMarketDialog extends DialogFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // Fetch arguments from bundle and set title
+        int item = getArguments().getInt("item", 0);
+        presenter.init();
+        switch (item){
+            case 1 : // Si va a registrar una tienda
+                        setVisibility(item);
+                        btn_registarTienda.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                String tiendaName = editNameTienda.getText().toString().trim();
+                                if(tiendaName.length()>0){
+                                    //Si quiero usar el presenter tengo que volver a instancearlo
+                                    presenter.createNewShop(tiendaName);
+                                }else{
+                                    Toast.makeText(getContext(), "Ingrese un nombre de Tienda", Toast.LENGTH_SHORT).show();
+                                }
+                                getDialog().dismiss();
+                            }
+                        });
+                        break;
+            case 2: //Si va a editar una tienda
+                        setVisibility(item);
+                        final MarketEntity tienda = (MarketEntity) getArguments().getSerializable("shop");
+                        editNameTienda.setText(tienda.getName());
+                        btn_editarTienda.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                String tiendaName = editNameTienda.getText().toString().trim();
+                                if(tiendaName.isEmpty()){
+                                    Toast.makeText(getContext(), "Ingrese un nombre de Tienda para editar", Toast.LENGTH_SHORT).show();
+                                }else if(tiendaName.equals(tienda.getName())){
+                                    Toast.makeText(getContext(), "El nombre ingresado es el mismo", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    presenter.editShop(tiendaName,tienda);
+                                }
+                                getDialog().dismiss();
+                            }
+                        });
+                        break;
+            default:    break;
+        }
+
+    }
+
+    public void setVisibility(int item){
+       switch (item){
+           case 1 :
+               txt_Registrar.setVisibility(View.VISIBLE);
+               txt_Editar.setVisibility(View.GONE);
+               btn_registarTienda.setVisibility(View.VISIBLE);
+               btn_editarTienda.setVisibility(View.GONE);
+               break;
+           case 2 :
+               txt_Registrar.setVisibility(View.GONE);
+               txt_Editar.setVisibility(View.VISIBLE);
+               btn_registarTienda.setVisibility(View.GONE);
+               btn_editarTienda.setVisibility(View.VISIBLE);
+               break;
+           default:
+               break;
+       }
     }
 
 }

@@ -69,34 +69,6 @@ public class SupermarketPresenter implements RealmChangeListener<RealmList<Marke
     }
 
     @Override
-    public void showAlertForEditSuperMarket(final MarketEntity shop) {
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-
-        dialog.setTitle("Editar Tienda");
-        View viewInflated = LayoutInflater.from(context).inflate(R.layout.dialogfragment_create_supermarket, null);
-        dialog.setView(viewInflated);
-
-        final EditText tienda = viewInflated.findViewById(R.id.editNameTienda);
-        tienda.setText(shop.getName());
-        dialog.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                String tiendaName = tienda.getText().toString().trim();
-                if(tiendaName.isEmpty()){
-                    view.showSnackbar("Ingrese un nombre de Tienda para editar");
-
-                }else if(tiendaName.equals(shop.getName())){
-                    view.showSnackbar("El nombre ingresado es el mismo");
-                }
-                else{
-                    editShop(tiendaName,shop);
-                }
-            }
-        });
-        dialog.show();
-    }
-
-    @Override
     public void createNewShop(String tiendaName) {
         realm.beginTransaction();
         MarketEntity _market = new MarketEntity(tiendaName);
@@ -105,7 +77,8 @@ public class SupermarketPresenter implements RealmChangeListener<RealmList<Marke
         realm.commitTransaction();
     }
 
-    private void editShop(String tiendaName, MarketEntity shop) {
+    @Override
+    public void editShop(String tiendaName, MarketEntity shop) {
         realm.beginTransaction();
         shop.setName(tiendaName);
         realm.copyToRealmOrUpdate(shop);

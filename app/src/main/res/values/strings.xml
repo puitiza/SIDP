@@ -2,4 +2,7 @@
     <string name="app_name">SIDP</string>
     <string name="title_activity_maps">Map</string>
     <string name="btn_agregar_tienda">AGREGAR</string>
+    <string name="txt_RegistrarTienda">Registrar Tienda</string>
+    <string name="txt_EditarTienda">Editar Tienda</string>
+    <string name="btn_editar_tienda">Guardar</string>
 </resources>

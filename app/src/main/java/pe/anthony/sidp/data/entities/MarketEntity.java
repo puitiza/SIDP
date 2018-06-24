@@ -1,5 +1,7 @@
 package pe.anthony.sidp.data.entities;
 
+import java.io.Serializable;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -10,7 +12,7 @@ import pe.anthony.sidp.app.sidp;
  * Created by ANTHONY on 5/04/2018.
  */
 
-public class MarketEntity extends RealmObject {
+public class MarketEntity extends RealmObject implements Serializable{
 
     @PrimaryKey
     private int id;

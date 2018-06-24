@@ -44,13 +44,11 @@ public class SupermarketActivity extends AppCompatActivity implements Supermarke
             @Override
             public void onClick(View view) {
                 FragmentManager fm = getSupportFragmentManager();
-                //CreateSuperMarketDialog dialog = CreateSuperMarketDialog.newInstance("2");
-                CreateSuperMarketDialog dialog = new CreateSuperMarketDialog();
+                CreateSuperMarketDialog dialog = CreateSuperMarketDialog.newInstance(1,null);//Le paso el numero para saber si es crear Tienda o Editar Tienda
+                //CreateSuperMarketDialog dialog = new CreateSuperMarketDialog();
                 dialog.show(fm, "shop");
 
                 //presenter.showAlertForCreateSuperMarket();
-                //CreateSuperMarketDialog dialog = new CreateSuperMarketDialog();
-                //dialog.show(getSupportFragmentManager(),"sddsfds");
             }
         });
         registerForContextMenu(listView);
@@ -68,7 +66,10 @@ public class SupermarketActivity extends AppCompatActivity implements Supermarke
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()){
             case R.id.edit_superMarket :
-                 presenter.showAlertForEditSuperMarket(shops.get(info.position));
+                    FragmentManager fm = getSupportFragmentManager();
+                    CreateSuperMarketDialog dialog = CreateSuperMarketDialog.newInstance(2,shops.get(info.position));
+                    dialog.show(fm, "shop");
+                 //presenter.showAlertForEditSuperMarket(shops.get(info.position));
                  return true;
             default:
                  return  super.onContextItemSelected(item);

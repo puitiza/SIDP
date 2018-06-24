@@ -11,7 +11,7 @@ public interface SupermarketContract {
 
     interface Presenter{
         RealmList<MarketEntity> init();
-        void showAlertForEditSuperMarket(MarketEntity shop);
         void createNewShop(String tiendaName);
+        void editShop(String tiendaName, MarketEntity shop);
     }
 }
