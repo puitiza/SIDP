@@ -10,8 +10,8 @@ public interface SupermarketContract {
     }
 
     interface Presenter{
-        void showAlertForCreateSuperMarket();
         RealmList<MarketEntity> init();
         void showAlertForEditSuperMarket(MarketEntity shop);
+        void createNewShop(String tiendaName);
     }
 }

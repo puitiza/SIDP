@@ -43,6 +43,11 @@ public class SupermarketPresenter implements RealmChangeListener<RealmList<Marke
         this.listView = listView;
     }
 
+    public SupermarketPresenter(Context context, ListView listView){
+        this.context = context;
+        this.listView = listView;
+    }
+
     @Override
     public RealmList<MarketEntity> init() {
         sessionManager = new SessionManager(context);
@@ -92,29 +97,7 @@ public class SupermarketPresenter implements RealmChangeListener<RealmList<Marke
     }
 
     @Override
-    public void showAlertForCreateSuperMarket() {
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-        dialog.setTitle("Registrar Tienda");
-        View viewInflated = LayoutInflater.from(context).inflate(R.layout.dialogfragment_create_supermarket, null);
-        dialog.setView(viewInflated);
-
-        final EditText tienda = viewInflated.findViewById(R.id.editNameTienda);
-
-        dialog.setPositiveButton("Agregar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                String tiendaName = tienda.getText().toString().trim();
-                if(tiendaName.length()>0){
-                    createNewShop(tiendaName);
-                }else{
-                    view.showSnackbar("Ingrese un nombre de Tienda");
-                }
-            }
-        });
-        dialog.show();
-    }
-
-    private void createNewShop(String tiendaName) {
+    public void createNewShop(String tiendaName) {
         realm.beginTransaction();
         MarketEntity _market = new MarketEntity(tiendaName);
         realm.copyToRealm(_market);
