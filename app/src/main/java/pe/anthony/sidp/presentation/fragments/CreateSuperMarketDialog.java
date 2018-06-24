@@ -7,11 +7,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,8 +24,8 @@ import pe.anthony.sidp.R;
 
 public class CreateSuperMarketDialog extends DialogFragment {
 
-    @BindView(R.id.txt_registarTienda)
-    TextView txt_registarTienda;
+    @BindView(R.id.btn_registarTienda)
+    Button btn_registarTienda;
     @BindView(R.id.editNameTienda)
     EditText editNameTienda;
 
@@ -52,8 +54,12 @@ public class CreateSuperMarketDialog extends DialogFragment {
         View v = inflater.inflate(R.layout.dialogfragment_create_supermarket, container, false);
         ButterKnife.bind(this, v);
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN); //Utiliza mas este metodo paa ocultar el teclado que el del XML
-
-        txt_registarTienda.setOnClickListener(new View.OnClickListener() {
+//      ------------------------------Esto es para agregar el efecto Ripple --------------------------------------------------------------------------
+        TypedValue outValue = new TypedValue();
+        getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+        btn_registarTienda.setBackgroundResource(outValue.resourceId);
+//      -----------------------------------------------------------------------------------------------------------------------------------------
+        btn_registarTienda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String tiendaName = editNameTienda.getText().toString().trim();

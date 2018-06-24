@@ -44,7 +44,8 @@ public class SupermarketActivity extends AppCompatActivity implements Supermarke
             @Override
             public void onClick(View view) {
                 FragmentManager fm = getSupportFragmentManager();
-                CreateSuperMarketDialog dialog = CreateSuperMarketDialog.newInstance("2");
+                //CreateSuperMarketDialog dialog = CreateSuperMarketDialog.newInstance("2");
+                CreateSuperMarketDialog dialog = new CreateSuperMarketDialog();
                 dialog.show(fm, "shop");
 
                 //presenter.showAlertForCreateSuperMarket();
