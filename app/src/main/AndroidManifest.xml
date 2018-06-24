@@ -34,7 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
         <!--Esto de configChanges ,soluciona el problema de cuando se crea un DialogFragment y luego se rota, el activity ya no se vuelve a crear
         , sino que usa el que ya habia creado-->
         <activity android:name=".presentation.activities.SupermarketActivity"

@@ -100,7 +100,11 @@ public class CreateSuperMarketDialog extends DialogFragment {
             case 2: //Si va a editar una tienda
                         setVisibility(item);
                         final MarketEntity tienda = (MarketEntity) getArguments().getSerializable("shop");
+//                      ------------------------------------Pone el cursor en la ultima posicion de la palabra-------------------------------
+                        editNameTienda.requestFocus();
                         editNameTienda.setText(tienda.getName());
+                        editNameTienda.setSelection(editNameTienda.length());
+//                      ---------------------------------------------------------------------------------------------------------------------
                         btn_editarTienda.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
