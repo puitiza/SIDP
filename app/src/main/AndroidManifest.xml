@@ -34,7 +34,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.activities.SupermarketActivity" />
+        
+        <!--Esto de configChanges ,soluciona el problema de cuando se crea un DialogFragment y luego se rota, el activity ya no se vuelve a crear
+        , sino que usa el que ya habia creado-->
+        <activity android:name=".presentation.activities.SupermarketActivity"
+            android:configChanges="screenLayout|screenSize|orientation"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
