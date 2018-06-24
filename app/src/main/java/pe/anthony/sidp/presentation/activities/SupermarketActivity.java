@@ -3,6 +3,7 @@ package pe.anthony.sidp.presentation.activities;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -42,9 +43,13 @@ public class SupermarketActivity extends AppCompatActivity implements Supermarke
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentManager fm = getSupportFragmentManager();
+                CreateSuperMarketDialog dialog = CreateSuperMarketDialog.newInstance("2");
+                dialog.show(fm, "shop");
+
                 //presenter.showAlertForCreateSuperMarket();
-                CreateSuperMarketDialog dialog = new CreateSuperMarketDialog();
-                dialog.show(getSupportFragmentManager(),"sddsfds");
+                //CreateSuperMarketDialog dialog = new CreateSuperMarketDialog();
+                //dialog.show(getSupportFragmentManager(),"sddsfds");
             }
         });
         registerForContextMenu(listView);

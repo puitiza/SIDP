@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import pe.anthony.sidp.R;
@@ -27,15 +31,14 @@ public class CreateSuperMarketDialog extends DialogFragment {
     //SupermarketContract.Presenter presenter;
 
 
-    /*public static CreateSuperMarketDialog newInstance(View view, SupermarketContract.Presenter presenter){
+    public static CreateSuperMarketDialog newInstance(String tienda){
         CreateSuperMarketDialog f = new CreateSuperMarketDialog();
         // Supply index input as an argument.
         Bundle args = new Bundle();
-        args.putInt("index", view);
+        args.putString("tienda", tienda);
         f.setArguments(args);
-
         return f;
-    }*/
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,28 +47,32 @@ public class CreateSuperMarketDialog extends DialogFragment {
         setCancelable(true);
     }
 
-
     @Override
     public View onCreateView( LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dialogfragment_create_supermarket, container, false);
         ButterKnife.bind(this, v);
-
-     /*   if (getDialog() != null && getDialog().getWindow() != null) {
-            getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        }*/
+        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN); //Utiliza mas este metodo paa ocultar el teclado que el del XML
 
         txt_registarTienda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String tiendaName = editNameTienda.getText().toString().trim();
                 if(tiendaName.length()>0){
-                    getDialog().dismiss();
+                    Toast.makeText(getContext(), "mrd crj escribiste algo", Toast.LENGTH_SHORT).show();
+
                 }else{
-                    //
+                    Toast.makeText(getContext(), "agg culo gordo no escribiste nada", Toast.LENGTH_SHORT).show();
                 }
+                getDialog().dismiss();
             }
         });
         return v;
     }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        // Fetch arguments from bundle and set title
+    }
+
 }
