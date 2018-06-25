@@ -10,7 +10,7 @@ public interface SupermarketContract {
     }
 
     interface Presenter{
-        RealmList<MarketEntity> init();
+        RealmList<MarketEntity> init(int item);
         void createNewShop(String tiendaName);
         void editShop(String tiendaName, MarketEntity shop);
     }

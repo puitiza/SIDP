@@ -49,7 +49,7 @@ public class SupermarketPresenter implements RealmChangeListener<RealmList<Marke
     }
 
     @Override
-    public RealmList<MarketEntity> init() {
+    public RealmList<MarketEntity> init(int item) {
         sessionManager = new SessionManager(context);
         realm= Realm.getDefaultInstance();
         if(((AppCompatActivity)context).getIntent().getExtras()!= null){
@@ -61,15 +61,17 @@ public class SupermarketPresenter implements RealmChangeListener<RealmList<Marke
 
         shops = user.getMarkets();
         shops.addChangeListener(this);
-        adapter = new MakerAdapter(context,shops,R.layout.list_view_market_item);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(this);
-
+        if(item == 1){ //Esto es para mostrar la lista de tiendas que hay
+            adapter = new MakerAdapter(context,shops,R.layout.list_view_market_item);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(this);
+        }
         return shops;
     }
 
     @Override
     public void createNewShop(String tiendaName) {
+        adapter = new MakerAdapter(context,shops,R.layout.list_view_market_item); // como se esta agregando un nuevo item solo inicializo el adapter
         realm.beginTransaction();
         MarketEntity _market = new MarketEntity(tiendaName);
         realm.copyToRealm(_market);
@@ -79,6 +81,7 @@ public class SupermarketPresenter implements RealmChangeListener<RealmList<Marke
 
     @Override
     public void editShop(String tiendaName, MarketEntity shop) {
+        adapter = new MakerAdapter(context,shops,R.layout.list_view_market_item);
         realm.beginTransaction();
         shop.setName(tiendaName);
         realm.copyToRealmOrUpdate(shop);
@@ -87,7 +90,7 @@ public class SupermarketPresenter implements RealmChangeListener<RealmList<Marke
 
     @Override
     public void onChange(RealmList<MarketEntity> marketEntities) {
-        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();//si agregas o editar el adapter inicializado lo va a saber
     }
 
     @Override

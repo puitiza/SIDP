@@ -54,6 +54,7 @@
         <activity
             android:name=".presentation.activities.MapsActivity"
             android:label="@string/title_activity_maps"
+            android:configChanges="screenLayout|screenSize|orientation"
             android:parentActivityName=".presentation.activities.SupermarketActivity" />
         <activity android:name=".presentation.activities.ProductosActivity"></activity>
     </application>

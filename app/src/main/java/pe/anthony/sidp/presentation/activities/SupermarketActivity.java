@@ -38,7 +38,7 @@ public class SupermarketActivity extends AppCompatActivity implements Supermarke
         ButterKnife.bind(this);
         presenter = new SupermarketPresenter(this,this,listView);
 
-        shops = presenter.init();
+        shops = presenter.init(1);//el numero significa para saber cuando se inicializa
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

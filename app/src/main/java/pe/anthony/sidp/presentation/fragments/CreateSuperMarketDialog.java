@@ -79,7 +79,7 @@ public class CreateSuperMarketDialog extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
         // Fetch arguments from bundle and set title
         int item = getArguments().getInt("item", 0);
-        presenter.init();
+        presenter.init(2);//Como no es el 1 no va a volver a llamar al setAdapter en el listView, solo inicializa los otros valores
         switch (item){
             case 1 : // Si va a registrar una tienda
                         setVisibility(item);
